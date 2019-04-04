@@ -24,6 +24,7 @@ dependencies:
 - classy-prelude
 - time
 - pcre-heavy
+- aeson
 
 default-extensions:
   - NoImplicitPrelude
