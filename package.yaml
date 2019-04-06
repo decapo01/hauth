@@ -25,6 +25,7 @@ dependencies:
 - time
 - pcre-heavy
 - aeson
+- mtl
 
 default-extensions:
   - NoImplicitPrelude
