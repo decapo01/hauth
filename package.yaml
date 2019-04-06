@@ -27,6 +27,7 @@ dependencies:
 - aeson
 - mtl
 - data-has
+- string-random
 
 default-extensions:
   - NoImplicitPrelude
