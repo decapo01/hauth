@@ -7,7 +7,9 @@ import qualified Adapter.InMemory.Auth as M
 import Domain.Auth
 
 type State = TVar M.State
+
 newtype App a = App {
+
   unApp :: ReaderT State IO a
 
 } deriving (Applicative, Functor, Monad, MonadReader State, MonadIO)
@@ -23,11 +25,27 @@ instance EmailVerificationNotif App where
   notifyEmailVerification = M.notifyEmailVerification
 
 instance SessionRepo App where
-  newSession = M.newSession
+  newSession            = M.newSession
   findUserIdBySessionId = M.findUserIdBySessionId 
 
 run :: State -> App a -> IO a
 run state = flip runReaderT state . unApp
 
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = do
+  state <- newTVarIO M.initialState
+  run state action
+
+
+action :: App ()
+action = do
+  let email = either undefined id $ mkEmail "ecky@test.com"
+      passw = either undefined id $ mkPassword "1234ABCDefgh"
+      auth  = Auth email passw
+  register auth
+  Just vCode <- M.getNotificationsForEmail email
+  verifyEmail vCode
+  Right session        <- login auth
+  Just uId             <- resolveSessionId session
+  Just registeredEmail <- getUser uId
+  print (session, uId, registeredEmail)
