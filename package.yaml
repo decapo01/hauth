@@ -35,6 +35,7 @@ default-extensions:
   - QuasiQuotes
   - ConstraintKinds
   - FlexibleContexts
+  - GeneralizedNewtypeDeriving
 
 library:
   source-dirs: src
