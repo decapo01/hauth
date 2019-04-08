@@ -9,6 +9,7 @@ import Data.Has
 import Text.StringRandom
 import Control.Monad.Except
 
+
 data State = State {
 
   stateAuths            :: [(D.UserId,D.Auth)],

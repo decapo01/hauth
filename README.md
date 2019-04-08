@@ -9,3 +9,5 @@ resolver: lts-9.11
 ```
 
 in the stack.yaml file
+
+Also note that all the chapters are stored in their own branch
