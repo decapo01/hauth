@@ -1,0 +1,29 @@
+/home/decapo/apps/haskell/hauth/src/Lib.hs:23:25-44: error:
+    • Couldn't match type ‘Int’ with ‘(UserId, Email)’
+      Expected type: VerificationCode
+                     -> App (Either EmailVerificationError (UserId, Email))
+        Actual type: VerificationCode
+                     -> App (Either EmailVerificationError UserId)
+    • In the expression: M.setEmailAsVerified
+      In an equation for ‘setEmailAsVerified’:
+          setEmailAsVerified = M.setEmailAsVerified
+      In the instance declaration for ‘AuthRepo App’
+/home/decapo/apps/haskell/hauth/src/Lib.hs:50:3-15: error:
+    • No instance for (KatipContext App)
+        arising from a use of ‘register’
+    • In a stmt of a 'do' block: register auth
+      In the expression:
+        do { let email = either undefined id $ mkEmail "ecky@test.com"
+                 passw = either undefined id $ mkPassword "1234ABCDefgh"
+                 ....;
+             register auth;
+             Just vCode <- M.getNotificationsForEmail email;
+             verifyEmail vCode;
+             .... }
+      In an equation for ‘action’:
+          action
+            = do { let email = ...
+                       ....;
+                   register auth;
+                   Just vCode <- M.getNotificationsForEmail email;
+                   .... }

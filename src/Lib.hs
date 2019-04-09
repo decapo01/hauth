@@ -17,6 +17,7 @@ newtype App a = App {
 } deriving (Applicative, Functor, Monad, MonadReader State, MonadIO)
 
 
+
 instance AuthRepo App where
   addAuth             = M.addAuth
   setEmailAsVerified  = M.setEmailAsVerified
@@ -37,6 +38,8 @@ someFunc :: IO ()
 someFunc = do
   state <- newTVarIO M.initialState
   run state action
+
+
 
 
 action :: App ()
@@ -62,7 +65,7 @@ withKatip app =
   bracket createLogEnv closeScribes app
   where
     createLogEnv = do
-      logEnv <- initLogEnv "HAuth" "dev"
+      logEnv       <- initLogEnv "HAuth" "dev"
       stdoutScribe <- mkHandleScribe ColorIfTerminal stdout InfoS V2
       registerScribe "stdout" stdoutScribe defaultScribeSettings logEnv
 

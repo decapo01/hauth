@@ -1,0 +1,530 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"reg",
+				"registeredEmail"
+			],
+			[
+				"findU",
+				"findUserIdBySessionId"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/Adapter/InMemory/Auth.hs",
+			"settings":
+			{
+				"buffer_size": 6205,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Lib.hs",
+			"settings":
+			{
+				"buffer_size": 2216,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.yaml",
+			"settings":
+			{
+				"buffer_size": 1415,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "decapo@notebook:~/apps/haskell/hauth$ fish\nWelcome to fish, the friendly interactive shell\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)                           \n» ghcid \"--command=stack repl\" -o ghcid.txt --restart=myproject.cabal         \nLoading stack repl ...\nhauth-0.1.0.0: initial-build-steps (lib + exe)\nThe following GHC options are incompatible with GHCi and have not been passed ​‌​\nto it: -threaded\nConfiguring GHCi with the following packages: hauth\nUsing main module: 1. Package `hauth' component exe:hauth-exe with main-is fil​‌​\ne: /home/decapo/apps/haskell/hauth/app/Main.hs\nGHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help\n[1 of 5] Compiling Domain.Validation ( /home/decapo/apps/haskell/hauth/src/Dom​‌​\nain/Validation.hs, interpreted )\n[2 of 5] Compiling Domain.Auth      ( /home/decapo/apps/haskell/hauth/src/Doma​‌​\nin/Auth.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: [-Wmissing-​‌​\nmethods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n[3 of 5] Compiling Adapter.InMemory.Auth ( /home/decapo/apps/haskell/hauth/src​‌​\n/Adapter/InMemory/Auth.hs, interpreted )\n[4 of 5] Compiling Lib              ( /home/decapo/apps/haskell/hauth/src/Lib.​‌​\nhs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:44:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n[5 of 5] Compiling Main             ( /home/decapo/apps/haskell/hauth/app/Main​‌​\n.hs, interpreted )\nOk, modules loaded: Adapter.InMemory.Auth, Domain.Auth, Domain.Validation, Lib​‌​\n, Main.\nLoaded GHCi configuration from /tmp/haskell-stack-ghci/3569bc1f/ghci-script\nSome flags have not been recognized: -fno-hide-source-paths\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n/home/decapo/apps/haskell/hauth/src/Lib.hs:44:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:20:1-6: error:\n    Variable not in scope:\n      skjfls :: template-haskell-2.11.1.0:Language.Haskell.TH.Lib.DecsQ\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial ^P\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: ^C⏎        ​‌​\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)                           \n» ghcid \"--command=stack repl\" -o ghcid.txt --restart=myproject.cabal         \nLoading stack repl ...\nhauth-0.1.0.0: initial-build-steps (lib + exe)\nThe following GHC options are incompatible with GHCi and have not been passed ​‌​\nto it: -threaded\nConfiguring GHCi with the following packages: hauth\nUsing main module: 1. Package `hauth' component exe:hauth-exe with main-is fil​‌​\ne: /home/decapo/apps/haskell/hauth/app/Main.hs\nGHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help\n[1 of 5] Compiling Domain.Validation ( /home/decapo/apps/haskell/hauth/src/Dom​‌​\nain/Validation.hs, interpreted )\n[2 of 5] Compiling Domain.Auth      ( /home/decapo/apps/haskell/hauth/src/Doma​‌​\nin/Auth.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: [-Wmissing-​‌​\nmethods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n[3 of 5] Compiling Adapter.InMemory.Auth ( /home/decapo/apps/haskell/hauth/src​‌​\n/Adapter/InMemory/Auth.hs, interpreted )\n[4 of 5] Compiling Lib              ( /home/decapo/apps/haskell/hauth/src/Lib.​‌​\nhs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n[5 of 5] Compiling Main             ( /home/decapo/apps/haskell/hauth/app/Main​‌​\n.hs, interpreted )\nOk, modules loaded: Adapter.InMemory.Auth, Domain.Auth, Domain.Validation, Lib​‌​\n, Main.\nLoaded GHCi configuration from /tmp/haskell-stack-ghci/3569bc1f/ghci-script\nSome flags have not been recognized: -fno-hide-source-paths\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):^C⏎               ​‌​\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)                           \n» exit                                                                        \ndecapo@notebook:~/apps/haskell/hauth$ ghcid \"--command=stack repl\" -o ghcid.tx​‌​\nt --restart=myproject.cabal \nLoading stack repl ...\nhauth-0.1.0.0: initial-build-steps (lib + exe)\nThe following GHC options are incompatible with GHCi and have not been passed ​‌​\nto it: -threaded\nConfiguring GHCi with the following packages: hauth\nUsing main module: 1. Package `hauth' component exe:hauth-exe with main-is fil​‌​\ne: /home/decapo/apps/haskell/hauth/app/Main.hs\nGHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help\n[1 of 5] Compiling Domain.Validation ( /home/decapo/apps/haskell/hauth/src/Dom​‌​\nain/Validation.hs, interpreted )\n[2 of 5] Compiling Domain.Auth      ( /home/decapo/apps/haskell/hauth/src/Doma​‌​\nin/Auth.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: [-Wmissing-​‌​\nmethods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n[3 of 5] Compiling Adapter.InMemory.Auth ( /home/decapo/apps/haskell/hauth/src​‌​\n/Adapter/InMemory/Auth.hs, interpreted )\n[4 of 5] Compiling Lib              ( /home/decapo/apps/haskell/hauth/src/Lib.​‌​\nhs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n[5 of 5] Compiling Main             ( /home/decapo/apps/haskell/hauth/app/Main​‌​\n.hs, interpreted )\nOk, modules loaded: Adapter.InMemory.Auth, Domain.Auth, Domain.Validation, Lib​‌​\n, Main.\nLoaded GHCi configuration from /tmp/haskell-stack-ghci/3569bc1f/ghci-script\nSome flags have not been recognized: -fno-hide-source-paths\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:20:1-5: error:\n    Variable not in scope:\n      sfads :: template-haskell-2.11.1.0:Language.Haskell.TH.Lib.DecsQ\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n\n\n^C\ndecapo@notebook:~/apps/haskell/hauth$ fish                                    \nWelcome to fish, the friendly interactive shell                               \ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)                           \n» ghcid \"--command=stack repl\" -o ghcid.txt --restart=myproject.cabal         \nLoading stack repl ...\nhauth-0.1.0.0: initial-build-steps (lib + exe)\nThe following GHC options are incompatible with GHCi and have not been passed ​‌​\nto it: -threaded\nConfiguring GHCi with the following packages: hauth\nUsing main module: 1. Package `hauth' component exe:hauth-exe with main-is fil​‌​\ne: /home/decapo/apps/haskell/hauth/app/Main.hs\nGHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help\n[1 of 5] Compiling Domain.Validation ( /home/decapo/apps/haskell/hauth/src/Dom​‌​\nain/Validation.hs, interpreted )\n[2 of 5] Compiling Domain.Auth      ( /home/decapo/apps/haskell/hauth/src/Doma​‌​\nin/Auth.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: [-Wmissing-​‌​\nmethods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n[3 of 5] Compiling Adapter.InMemory.Auth ( /home/decapo/apps/haskell/hauth/src​‌​\n/Adapter/InMemory/Auth.hs, interpreted )\n[4 of 5] Compiling Lib              ( /home/decapo/apps/haskell/hauth/src/Lib.​‌​\nhs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial functi​‌​\nons or provide meaningful error messages\"\n[5 of 5] Compiling Main             ( /home/decapo/apps/haskell/hauth/app/Main​‌​\n.hs, interpreted )\nOk, modules loaded: Adapter.InMemory.Auth, Domain.Auth, Domain.Validation, Lib​‌​\n, Main.\nLoaded GHCi configuration from /tmp/haskell-stack-ghci/3569bc1f/ghci-script\nSome flags have not been recognized: -fno-hide-source-paths\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:47:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:48:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:20:1-8: error:\n    Variable not in scope:\n      dlsjkfsl :: template-haskell-2.11.1.0:Language.Haskell.TH.Lib.DecsQ\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\nReloading... instance declaration for ‘AuthRepo IO’\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:47:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:48:22-30: warning: \n[-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):^C⏎               \ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)                           \n» ghcid \"--command=stack repl\" -o ghcid.txt -fdiagnos                         ​‌​\ntics-color=always\nUnknown flag: -f\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)  \n» ghcid \"--command=stack repl\" -o ghcid.txt -diagnost​‌​\nics-color=always                                     \nUnknown flag: -d\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)  \n» ghcid \"--command=stack repl --ghc-option=-fdiagnost​‌​\nics-color=always\" -o ghcid.txt                       \nLoading stack repl --ghc-option=-fdiagnostics-color=a​‌​\nlways ...\nInvalid option `--ghc-option=-fdiagnostics-color=alwa​‌​\nys'\n\nUsage: stack repl [TARGET/FILE] [--ghci-options OPTIO​‌​\nNS] [--ghc-options OPTIONS]\n                  [--flag PACKAGE:[-]FLAG] [--with-gh​‌​\nc GHC] [--[no-]load]\n                  [--package ARG] [--main-is TARGET] ​‌​\n[--load-local-deps]\n                  [--[no-]package-hiding] [--only-mai​‌​\nn] [--trace] [--profile]\n                  [--no-strip] [--[no-]test] [--[no-]​‌​\nbench] [--help]\n  Run ghci in the context of package(s) (experimental​‌​\n) (alias for 'ghci')\nCommand \"stack repl --ghc-option=-fdiagnostics-color=​‌​\nalways\" exited unexpectedly\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)  \n» ghcid \"--command=stack repl\" -o ghcid.txt | source-​‌​\nhighlight -s haskell -f esc                          \n\nCommand 'source-highlight' not found, but can be inst​‌​\nalled with:\n\nsudo apt install source-highlight\n\nfish: \nghcid \"--command=stack repl\" -o ghcid.txt | source-hi​‌​\nghlight -s haskell -f esc\n                                            ^\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)  \n» sudo apt install source-highlight                  \n[sudo] password for decapo: \nReading package lists... Done\nBuilding dependency tree       \nReading state information... Done\nThe following packages were automatically installed a​‌​\nnd are no longer required:\n  cmake-data libgraphicsmagick++-q16-12\n  libgraphicsmagick-q16-3 libjpeg-progs libjpeg9\n  librhash0 linux-headers-4.15.0-34\n  linux-headers-4.15.0-34-generic\n  linux-headers-4.15.0-36\n  linux-headers-4.15.0-36-generic\n  linux-image-4.15.0-34-generic\n  linux-image-4.15.0-36-generic\n  linux-modules-4.15.0-34-generic\n  linux-modules-4.15.0-36-generic\n  linux-modules-extra-4.15.0-34-generic\n  linux-modules-extra-4.15.0-36-generic\n  yudit-common\nUse 'sudo apt autoremove' to remove them.\nThe following additional packages will be installed:\n  libsource-highlight-common libsource-highlight4v5\nThe following NEW packages will be installed:\n  libsource-highlight-common libsource-highlight4v5\n  source-highlight\n0 upgraded, 3 newly installed, 0 to remove and 105 no​‌​\nt upgraded.\nNeed to get 561 kB of archives.\nAfter this operation, 3,192 kB of additional disk spa​‌​\nce will be used.\nDo you want to continue? [Y/n] y\nGet:1 http://us.archive.ubuntu.com/ubuntu bionic/univ​‌​\nerse amd64 libsource-highlight-common all 3.1.8-1.2 [​‌​\n51.0 kB]\nGet:2 http://us.archive.ubuntu.com/ubuntu bionic/univ​‌​\nUnpacking source-highlight (3.1.8-1.2) ...\nSetting up libsource-highlight-common (3.1.8-1.2) ...\nProcessing triggers for install-info (6.5.0.dfsg.1-2)​‌​\n ...\nSetting up libsource-highlight4v5 (3.1.8-1.2) ...\nProcessing triggers for libc-bin (2.27-3ubuntu1) ...\nProcessing triggers for man-db (2.8.3-2ubuntu0.1) ...\nSetting up source-highlight (3.1.8-1.2) ...\ndecapo at notebook in ~/a/h/hauth (chapter_04|✚2…3)  \n» ghcid \"--command=stack repl\" -o ghcid.txt | source-​‌​\nhighlight -s haskell -f esc                        \nLoading stack repl ...\nhauth-0.1.0.0: initial-build-steps (lib + exe)\nThe following GHC options are incompatible with GHCi ​‌​\nand have not been passed to it: -threaded\nConfiguring GHCi with the following packages: hauth\nUsing main module: 1. Package `hauth' component exe:h​‌​\nauth-exe with main-is file: /home/decapo/apps/haskell​‌​\n/hauth/app/Main.hs\nGHCi, version 8.0.2: http://www.haskell.org/ghc/  :? ​‌​\nfor help\n[1 of 5] Compiling Domain.Validation ( /home/decapo/a​‌​\npps/haskell/hauth/src/Domain/Validation.hs, interpret​‌​\ned )\n[2 of 5] Compiling Domain.Auth      ( /home/decapo/ap​‌​\nps/haskell/hauth/src/Domain/Auth.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80​‌​\n:10: warning: [-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘​‌​\nfindEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n[3 of 5] Compiling Adapter.InMemory.Auth ( /home/deca​‌​\npo/apps/haskell/hauth/src/Adapter/InMemory/Auth.hs, i​‌​\nnterpreted )\n[4 of 5] Compiling Lib              ( /home/decapo/ap​‌​\nps/haskell/hauth/src/Lib.hs, interpreted )\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:47:22: war​‌​\nning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPr​‌​\nelude):\n    Deprecated: \"It is highly recommended that you ei​‌​\nther avoid partial functions or provide meaningful er​‌​\nror messages\"\n\n/home/decapo/apps/haskell/hauth/src/Lib.hs:48:22: war​‌​\nning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPr​‌​\nelude):\n    Deprecated: \"It is highly recommended that you ei​‌​\nther avoid partial functions or provide meaningful er​‌​\nror messages\"\n[5 of 5] Compiling Main             ( /home/decapo/ap​‌​\nps/haskell/hauth/app/Main.hs, interpreted )\nOk, modules loaded: Adapter.InMemory.Auth, Domain.Aut​‌​\nh, Domain.Validation, Lib, Main.\nLoaded GHCi configuration from /tmp/haskell-stack-ghc​‌​\ni/3569bc1f/ghci-script\nSome flags have not been recognized: -fno-hide-source​‌​\n-paths\n[31m]0;3 warnings - hauth\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80​‌​\n:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘\nfindEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\n/home/decapo/apps/haskell/hauth/src/Lib.hs:47:22: war\nning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPr\nelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n[31m]0;1 error, 1 warning - hauth\n/home/decapo/apps/haskell/hauth/src/Lib.hs:21:1-8: error:\n    Variable not in scope:\n      sdfsfsds :: template-haskell-2.11.1.0:Language.Haskell.TH.Lib.DecsQ\n/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs:80:10: warning: \n[-Wmissing-methods]\n    • No explicit implementation for\n        ‘setEmailAsVerified’, ‘findUserByAuth’, and ‘findEmailFromUserId’\n    • In the instance declaration for ‘AuthRepo IO’\nReloading...\n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n[31m]0;3 warnings - hauth\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22-30: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22-30: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\nReloading...ed: \"It is highly recommended that you either avoid partial \n  /home/decapo/apps/haskell/hauth/src/Lib.hs\n\n\n\n\n\n[31m]0;3 warnings - hauth\n/home/decapo/apps/haskell/hauth/src/Lib.hs:45:22-30: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \nfunctions or provide meaningful error messages\"\n/home/decapo/apps/haskell/hauth/src/Lib.hs:46:22-30: warning: [-Wdeprecations]\n    In the use of ‘undefined’ (imported from ClassyPrelude):\n    Deprecated: \"It is highly recommended that you either avoid partial \n\nfunctions or provide meaningful error messages\"",
+			"settings":
+			{
+				"buffer_size": 22672,
+				"line_ending": "Unix",
+				"name": "3 warnings - hauth",
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"toggl",
+				"View: Toggle Side Bar"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"Package ",
+				"Package Control: Install Package"
+			],
+			[
+				"Terminus",
+				"Terminus Utilities: Select Theme"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle si",
+				"View: Toggle Side Bar"
+			],
+			[
+				"file",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"sid",
+				"View: Toggle Side Bar"
+			],
+			[
+				"terminus: open ",
+				"Terminus: Open Default Shell in View"
+			],
+			[
+				"terminus: to",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"terminus: pan",
+				"Terminus: Open Default Shell in Panel"
+			],
+			[
+				"toggle term",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"terminu",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package Control: sear",
+				"Package Control: Discover Packages"
+			],
+			[
+				"font",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"Color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"Term",
+				"Terminal: Open"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 206.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/decapo/apps/haskell/hauth",
+		"/home/decapo/apps/haskell/hauth/src"
+	],
+	"file_history":
+	[
+		"/home/decapo/.config/sublime-text-3/Packages/User/SublimeOnSaveBuild.sublime-settings",
+		"/home/decapo/.config/sublime-text-3/Packages/User/Terminal.sublime-settings",
+		"/home/decapo/apps/haskell/hauth/src/Lib.hs",
+		"/home/decapo/apps/haskell/hauth/src/Domain/Auth.hs",
+		"/home/decapo/apps/haskell/hauth/README.md",
+		"/home/decapo/apps/haskell/hauth/package.yaml",
+		"/home/decapo/apps/haskell/hauth/stack.yaml",
+		"/home/decapo/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 116.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"katipAddNamspace",
+			"findEmailFromUserId"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/Adapter/InMemory/Auth.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2540,
+								2540
+							]
+						],
+						"settings":
+						{
+							"subhask_project_dir": "/home/decapo/apps/haskell/hauth",
+							"subhask_project_name": "hauth",
+							"syntax": "Packages/Haskell/Haskell.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1587.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Lib.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								289,
+								289
+							]
+						],
+						"settings":
+						{
+							"subhask_project_dir": "/home/decapo/apps/haskell/hauth",
+							"subhask_project_name": "hauth",
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "package.yaml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1415,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								937,
+								937
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 483.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22672,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22624,
+								22624
+							]
+						],
+						"settings":
+						{
+							"__vi_external_disable": true,
+							"auto_complete": false,
+							"auto_complete_commit_on_tab": false,
+							"bracket_highlighter.clone_locations":
+							{
+							},
+							"bracket_highlighter.ignore": true,
+							"caret_style": "blink",
+							"color_scheme": "Terminus.sublime-color-scheme",
+							"draw_centered": false,
+							"draw_indent_guides": false,
+							"draw_white_space": "none",
+							"gutter": false,
+							"highlight_line": false,
+							"is_widget": true,
+							"scroll_past_end": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"terminus.highlight_counter": 2576,
+							"terminus_view": true,
+							"terminus_view.args":
+							{
+								"auto_close": true,
+								"cmd":
+								[
+									"/bin/bash",
+									"-i",
+									"-l"
+								],
+								"cwd": "/home/decapo/apps/haskell/hauth",
+								"env":
+								{
+									"LANG": "en_US.UTF-8",
+									"TERM": "linux",
+									"TERMINUS_SUBLIME": "1",
+									"TERM_PROGRAM": "Terminus-Sublime"
+								},
+								"panel_name": null,
+								"tag": null,
+								"title": "Login Shell"
+							},
+							"terminus_view.key.ctrl+k": true,
+							"terminus_view.key.ctrl+p": true,
+							"terminus_view.natural_keyboard": true,
+							"terminus_view.panel_name": null,
+							"terminus_view.tag": null,
+							"terminus_view.viewport_y": 12222.333001,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 12259.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.702929824658,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 202.0
+	},
+	"output.Terminus 2":
+	{
+		"height": 168.0
+	},
+	"output.exec":
+	{
+		"height": 156.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sublime_haskell_output_panel":
+	{
+		"height": 168.0
+	},
+	"pinned_build_system": "Packages/User/haskell-ghcid.sublime-build",
+	"project": "hauth.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"LIb",
+				"src/Lib.hs"
+			],
+			[
+				"Lib",
+				"src/Lib.hs"
+			],
+			[
+				"pack",
+				"package.yaml"
+			],
+			[
+				"re",
+				"README.md"
+			],
+			[
+				"sta",
+				"stack.yaml"
+			],
+			[
+				"pa",
+				"package.yaml"
+			],
+			[
+				"Auth",
+				"src/Domain/Auth.hs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 393.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 594.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

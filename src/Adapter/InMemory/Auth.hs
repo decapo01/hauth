@@ -57,7 +57,7 @@ type InMemory r m = (Has (TVar State) r, MonadReader r m, MonadIO m)
 
 
 -- Books Implementation
-addAuth :: InMemory r m => D.Auth -> m (Either D.RegistrationError D.VerificationCode)
+addAuth :: InMemory r m => D.Auth -> m (Either D.RegistrationError (D.UserId,D.VerificationCode))
 addAuth auth = do
   tvar  <- asks getter
   vCode <- liftIO $ stringRandomIO "[A-Za-z0-9]{16}"
@@ -77,11 +77,11 @@ addAuth auth = do
           , stateUnverifiedEmails = newUnverifieds
           }
     lift $ writeTVar tvar newState
-    return vCode
+    return (newUserId,vCode)
 
 
 -- Did this alternate of the function just to understand
-setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError ())
+setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError (D.UserId))
 setEmailAsVerified vCode = do
   tvar  <- asks getter
   atomically $ do
@@ -95,8 +95,12 @@ setEmailAsVerified vCode = do
         let newUnverifieds = deleteMap vCode unverifieds
             newVerifieds   = insertSet email verifieds
             newState       = state { stateUnverifiedEmails = newUnverifieds, stateVerifiedEmails = newVerifieds}
-        writeTVar tvar newState
-        return $ Right ()
+            mayUserId      = map fst $ find(\a -> (D.authEmail $ snd $ a) == email) $ stateAuths state
+        case mayUserId of
+          Nothing  -> return $ Left D.EmailVerificationErrorInvalidCode
+          Just uId -> do
+            writeTVar tvar newState
+            return $ Right (uId)
 
 -- Original in book
 -- setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError ())

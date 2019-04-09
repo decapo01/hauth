@@ -6,6 +6,7 @@ import ClassyPrelude
 import Domain.Validation
 import Text.Regex.PCRE.Heavy
 import Control.Monad.Except
+import Katip
 
 
 data Auth = Auth {
@@ -59,8 +60,8 @@ data EmailVerificationError = EmailVerificationErrorInvalidCode
   deriving (Show,Eq)
 
 class (Monad m) => AuthRepo m where
-  addAuth             :: Auth             -> m (Either RegistrationError VerificationCode)
-  setEmailAsVerified  :: VerificationCode -> m (Either EmailVerificationError ())
+  addAuth             :: Auth             -> m (Either RegistrationError (UserId,VerificationCode))
+  setEmailAsVerified  :: VerificationCode -> m (Either EmailVerificationError (UserId,Email))
   findUserByAuth      :: Auth             -> m (Maybe (UserId, Bool))
   findEmailFromUserId :: UserId           -> m (Maybe Email)
 
@@ -71,23 +72,20 @@ class (Monad m) => SessionRepo m where
   newSession            :: UserId    -> m SessionId
   findUserIdBySessionId :: SessionId -> m (Maybe UserId)
 
-register :: (AuthRepo m, EmailVerificationNotif m) => Auth -> m (Either RegistrationError ())
+
+withUserIdContext :: (KatipContext m) => UserId -> m a -> m a
+withUserIdContext uId = katipAddContext (sl "userId" uId)
+
+register :: (KatipContext m, AuthRepo m, EmailVerificationNotif m) => Auth -> m (Either RegistrationError ())
 register auth = runExceptT $ do
-  vCode <- ExceptT $ addAuth auth
+  (uId, vCode) <- ExceptT $ addAuth auth
   let email = authEmail auth
   lift $ notifyEmailVerification email vCode
-
-instance AuthRepo IO where
-  addAuth (Auth email pass) = do
-    putStrLn $ "adding auth: " <> rawEmail email
-    return $ Right "fake verification code"
-
-instance EmailVerificationNotif IO where
-  notifyEmailVerification email vcode =
-    putStrLn $ "Notify " <> rawEmail email <> " - " <> vcode
+  withUserIdContext uId $
+    $(logTM) InfoS $ ls (rawEmail email) <> "is registered successfully"
 
 
-verifyEmail :: AuthRepo m => VerificationCode -> m (Either EmailVerificationError ())
+verifyEmail :: (KatipContext m, AuthRepo m) => VerificationCode -> m (Either EmailVerificationError (UserId,Email))
 verifyEmail = setEmailAsVerified
 
 
@@ -100,13 +98,16 @@ data LoginError =
   | LoginErrorEmailNotVerified
   deriving (Show,Eq)
 
-login :: (AuthRepo m, SessionRepo m) => Auth -> m (Either LoginError SessionId)
+login :: (KatipContext m, AuthRepo m, SessionRepo m) => Auth -> m (Either LoginError SessionId)
 login auth = runExceptT $ do
   result <- lift $ findUserByAuth auth
   case result of
     Nothing        -> throwError LoginErrorInvalidAuth
     Just (_,False) -> throwError LoginErrorEmailNotVerified
-    Just (uId,_)   -> lift $ newSession uId
+    Just (uId,_)   -> withUserIdContext uId . lift $ do
+      sId <- newSession uId
+      $(logTM) InfoS $ ls (rawEmail $ authEmail auth) <> " logged in successfully "
+      return sId
 
 
 resolveSessionId :: SessionRepo m => SessionId -> m (Maybe UserId)
