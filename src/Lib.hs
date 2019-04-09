@@ -12,9 +12,9 @@ type State = TVar M.State
 
 newtype App a = App {
 
-  unApp :: ReaderT State IO a
+  unApp :: ReaderT State (KatipContextT IO) a
 
-} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO)
+} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO, KatipContext, Katip)
 
 
 
@@ -31,13 +31,18 @@ instance SessionRepo App where
   newSession            = M.newSession
   findUserIdBySessionId = M.findUserIdBySessionId 
 
-run :: State -> App a -> IO a
-run state = flip runReaderT state . unApp
+run :: LogEnv -> State -> App a -> IO a
+run logEnv state =
+  runKatipContextT logEnv () mempty 
+  . flip runReaderT state
+  . unApp
+
+
 
 someFunc :: IO ()
-someFunc = do
+someFunc = withKatip $ \logEnv -> do
   state <- newTVarIO M.initialState
-  run state action
+  run logEnv state action
 
 
 

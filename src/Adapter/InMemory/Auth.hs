@@ -81,7 +81,7 @@ addAuth auth = do
 
 
 -- Did this alternate of the function just to understand
-setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError (D.UserId))
+setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError (D.UserId,D.Email))
 setEmailAsVerified vCode = do
   tvar  <- asks getter
   atomically $ do
@@ -100,7 +100,7 @@ setEmailAsVerified vCode = do
           Nothing  -> return $ Left D.EmailVerificationErrorInvalidCode
           Just uId -> do
             writeTVar tvar newState
-            return $ Right (uId)
+            return $ Right (uId,email)
 
 -- Original in book
 -- setEmailAsVerified :: InMemory r m => D.VerificationCode -> m (Either D.EmailVerificationError ())
