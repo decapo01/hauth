@@ -1,13 +1,13 @@
 module Adapter.PostgreSQL.Auth where
 
-import ClassyPrelude
-import Data.Pool
-import Database.PostgreSQL.Simple.Migration
-import Database.PostgreSQL.Simple
-import Data.Time
-import qualified Domain.Auth as D
-import Data.Has
-import Text.StringRandom
+import           ClassyPrelude
+import           Data.Has
+import           Data.Pool
+import           Data.Time
+import           Database.PostgreSQL.Simple
+import           Database.PostgreSQL.Simple.Migration
+import qualified Domain.Auth                          as D
+import           Text.StringRandom
 
 type State = Pool Connection
 
@@ -26,7 +26,7 @@ migrate pool = withResource pool $ \conn -> do
   result <- withTransaction conn (runMigrations False conn cmds)
   case result of
     MigrationError err -> throwString err
-    _ -> return ()
+    _                  -> return ()
   where
     cmds = [
       MigrationInitialization,
@@ -105,7 +105,7 @@ setEmailAsVerified vCode = do
       -- res2 <- liftIO $ updateAuthAsVerified email
       -- case res2 of
         -- Left  e -> return $ Left D.EmailVerificationErrorInvalidCode
-        -- Right _ -> return $ Right (uId,email) 
+        -- Right _ -> return $ Right (uId,email)
   -- where
     -- findAuthByVcode vCode =
       -- withConn $ \conn ->

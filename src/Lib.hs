@@ -1,6 +1,4 @@
-module Lib
-    ( someFunc
-    ) where
+module Lib(someFunc) where
 
 import ClassyPrelude
 import qualified Adapter.InMemory.Auth as M

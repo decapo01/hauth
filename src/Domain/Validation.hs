@@ -1,7 +1,7 @@
 module Domain.Validation where
 
-import ClassyPrelude
-import Text.Regex.PCRE.Heavy
+import           ClassyPrelude
+import           Text.Regex.PCRE.Heavy
 
 
 type Validation e a = a -> Maybe e
@@ -26,3 +26,5 @@ lengthBetween minLen maxLen msg val =
 regexMatches :: Regex -> e -> Validation e Text
 regexMatches regex msg val =
   if val =~ regex then Nothing else Just msg
+
+
