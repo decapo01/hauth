@@ -2,11 +2,13 @@ module Lib(someFunc) where
 
 import ClassyPrelude
 import qualified Adapter.InMemory.Auth as M
+import qualified Adapter.PostgreSQL.Auth as PG
+
 import Domain.Auth
 
 import Katip
 
-type State = TVar M.State
+type State = (PG.State, TVar M.State)
 
 newtype App a = App {
 
@@ -39,8 +41,15 @@ run logEnv state =
 
 someFunc :: IO ()
 someFunc = withKatip $ \logEnv -> do
-  state <- newTVarIO M.initialState
-  run logEnv state action
+  mState <- newTVarIO M.initialState
+  PG.withState pgCfg $ \pgState -> run logEnv (pgState,mState) action
+  where
+    pgCfg = PG.Config {
+      PG.configUrl = "posgtresql://localhost/hauth",
+      PG.configStripeCount = 2,
+      PG.configMaxOpenConnPerStripe = 5,
+      PG.configIdleConnTimeout = 10
+    }
 
 
 

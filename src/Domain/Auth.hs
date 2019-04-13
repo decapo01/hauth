@@ -110,6 +110,7 @@ login auth = runExceptT $ do
       return sId
 
 
+
 resolveSessionId :: SessionRepo m => SessionId -> m (Maybe UserId)
 resolveSessionId = findUserIdBySessionId
 

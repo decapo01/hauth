@@ -14,6 +14,11 @@ validate constructor validations val =
     errs -> Left errs
 
 
+blah2 :: Text -> Text
+blah2 b = b ++ "text"
+
+
+
 rangeBetween :: (Ord a) => a -> a -> e -> Validation e a
 rangeBetween minRange maxRnage msg val =
   if val >= minRange && val <= maxRnage then Nothing else Just msg
@@ -27,4 +32,5 @@ regexMatches :: Regex -> e -> Validation e Text
 regexMatches regex msg val =
   if val =~ regex then Nothing else Just msg
 
-
+blah :: Text -> Text
+blah a = a ++ "blah"
