@@ -3,18 +3,18 @@ module Lib(someFunc) where
 import ClassyPrelude
 import qualified Adapter.InMemory.Auth as M
 import qualified Adapter.PostgreSQL.Auth as PG
-
+import qualified Adapter.Redis.Auth as Redis
 import Domain.Auth
 
 import Katip
 
-type State = (PG.State, TVar M.State)
+type State = (PG.State, Redis.State, TVar M.State)
 
 newtype App a = App {
 
   unApp :: ReaderT State (KatipContextT IO) a
 
-} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO, KatipContext, Katip)
+} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO, KatipContext, Katip, MonadThrow)
 
 
 
@@ -28,8 +28,8 @@ instance EmailVerificationNotif App where
   notifyEmailVerification = M.notifyEmailVerification
 
 instance SessionRepo App where
-  newSession            = M.newSession
-  findUserIdBySessionId = M.findUserIdBySessionId 
+  newSession            = Redis.newSession
+  findUserIdBySessionId = Redis.findUserIdBySessionId 
 
 run :: LogEnv -> State -> App a -> IO a
 run logEnv state =
@@ -42,10 +42,13 @@ run logEnv state =
 someFunc :: IO ()
 someFunc = withKatip $ \logEnv -> do
   mState <- newTVarIO M.initialState
-  PG.withState pgCfg $ \pgState -> run logEnv (pgState,mState) action
+  PG.withState pgCfg $ \pgState -> 
+    Redis.withState redisCfg $ \redisState -> 
+      run logEnv (pgState,redisState,mState) action
   where
+    redisCfg = "redis://localhost:6379/0"
     pgCfg = PG.Config {
-      PG.configUrl = "posgtresql://localhost/hauth",
+      PG.configUrl = "postgresql://localhost/hauth",
       PG.configStripeCount = 2,
       PG.configMaxOpenConnPerStripe = 5,
       PG.configIdleConnTimeout = 10
