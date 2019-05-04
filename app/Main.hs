@@ -2,9 +2,9 @@ module Main where
 
 import           ClassyPrelude
 
-import           Lib
+import qualified Lib as L
 
 
 main :: IO ()
 main =
-  someFunc
+  L.main
