@@ -33,6 +33,7 @@ dependencies:
 - postgresql-simple
 - postgresql-simple-migration
 - hedis
+- amqp
 
 default-extensions:
   - NoImplicitPrelude

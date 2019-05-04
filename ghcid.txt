@@ -1,12 +1,5 @@
-/home/decapo/apps/haskell/hauth/src/Lib.hs:52:22: warning: [-Wdeprecations]
-    In the use of ‘undefined’ (imported from ClassyPrelude):
-    Deprecated: "It is highly recommended that you either avoid partial functions or provide meaningful error messages"
-   |
-52 |   let email = either undefined id $ mkEmail "ecky@test.com"
-   |                      ^^^^^^^^^
-/home/decapo/apps/haskell/hauth/src/Lib.hs:53:22: warning: [-Wdeprecations]
-    In the use of ‘undefined’ (imported from ClassyPrelude):
-    Deprecated: "It is highly recommended that you either avoid partial functions or provide meaningful error messages"
-   |
-53 |       passw = either undefined id $ mkPassword "1234ABCDefgh"
-   |                      ^^^^^^^^^
+/home/decapo/apps/haskell/hauth/src/Adapter/RabbitMQ/Common.hs:3:23-25: error:
+    parse error on input ‘whe’
+  |
+3 | module RabitMQ.Common whe
+  |                       ^^^
