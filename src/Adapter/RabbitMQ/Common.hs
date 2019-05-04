@@ -54,8 +54,8 @@ initQueue state@(State pubChan _) queueName exchangeName routingKey = do
 initConsumer :: State -> Text -> (Message -> IO Bool) -> IO ()
 initConsumer (State _ conChan) queueName handler = do
   void . consumeMsgs conChan queueName Ack $ \(msg, env) -> void . fork $ do
-  result <- handler msg
-  if result then ackEnv env else rejectEnv env False
+    result <- handler msg
+    if result then ackEnv env else rejectEnv env False
 
 
 publish :: (ToJSON a, Rabbit r m) => Text -> Text -> a -> m ()

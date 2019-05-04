@@ -5,17 +5,21 @@ import qualified Adapter.InMemory.Auth as M
 import qualified Adapter.PostgreSQL.Auth as PG
 import qualified Adapter.Redis.Auth as Redis
 import Domain.Auth
-
 import Katip
+import qualified Adapter.RabbitMQ.Common as MQ
+import qualified Adapter.RabbitMQ.Auth    as MQAuth
 
-type State = (PG.State, Redis.State, TVar M.State)
+import Text.StringRandom
+
+
+
+type State = (PG.State, Redis.State, MQ.State, TVar M.State)
 
 newtype App a = App {
 
   unApp :: ReaderT State (KatipContextT IO) a
 
-} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO, KatipContext, Katip, MonadThrow)
-
+} deriving (Applicative, Functor, Monad, MonadReader State, MonadIO, KatipContext, Katip, MonadThrow, MonadCatch)
 
 
 instance AuthRepo App where
@@ -25,7 +29,7 @@ instance AuthRepo App where
   findEmailFromUserId = M.findEmailFromUserId
 
 instance EmailVerificationNotif App where
-  notifyEmailVerification = M.notifyEmailVerification
+  notifyEmailVerification = MQAuth.notifyEmailVerification
 
 instance SessionRepo App where
   newSession            = Redis.newSession
@@ -37,38 +41,75 @@ run logEnv state =
   . flip runReaderT state
   . unApp
 
+  
+withState :: (LogEnv -> State -> IO ()) -> IO ()
+withState action =
+  withKatip $ \le -> do
+    mState <- newTVarIO M.initialState
+    PG.withState pgCfg $ \pgState ->
+      Redis.withState redisCfg $ \redisState ->
+        MQ.withState mqCfg 16 $ \mqState -> do
+          let state = (pgState, redisState, mqState, mState)
+          action le state
+  where
+    mqCfg = "amqp://guest:guest@localhost:5672/%2F"
+    redisCfg = "redis://localhost:6379/0"
+    pgCfg = PG.Config
+      { PG.configUrl = "postgresql://webappuser:!Q2w3e4r5t@localhost/hauth"
+      , PG.configStripeCount = 2
+      , PG.configMaxOpenConnPerStripe = 5
+      , PG.configIdleConnTimeout = 10
+      }
 
+main :: IO ()
+main =
+  withState $ \le state@(_,_,mqState,_) -> do
+    let runner = run le state
+    MQAuth.init mqState runner
+    runner action
 
 someFunc :: IO ()
 someFunc = withKatip $ \logEnv -> do
   mState <- newTVarIO M.initialState
   PG.withState pgCfg $ \pgState -> 
-    Redis.withState redisCfg $ \redisState -> 
-      run logEnv (pgState,redisState,mState) action
+    Redis.withState redisCfg $ \redisState ->
+      MQ.withState mqCfg 16 $ \mqState -> do
+        let runner = run logEnv (pgState,redisState,mqState,mState) 
+        MQAuth.init mqState runner
+        runner action
   where
+    mqCfg = "amqp://guest:guest@localhost:5672/%2F"
     redisCfg = "redis://localhost:6379/0"
-    pgCfg = PG.Config {
-      PG.configUrl = "postgresql://localhost/hauth",
-      PG.configStripeCount = 2,
-      PG.configMaxOpenConnPerStripe = 5,
-      PG.configIdleConnTimeout = 10
-    }
+    pgCfg = 
+      PG.Config 
+        { PG.configUrl = "postgresql://webappuser:!Q2w3e4r5t@localhost/hauth"
+        , PG.configStripeCount = 2
+        , PG.configMaxOpenConnPerStripe = 5
+        , PG.configIdleConnTimeout = 10
+        }
 
 
 
 
 action :: App ()
 action = do
-  let email = either undefined id $ mkEmail "ecky@test.com"
+  randEmail <- liftIO $ stringRandomIO "[a-z0-9]{5}@test\\.com"
+  let email = either undefined id $ mkEmail randEmail
       passw = either undefined id $ mkPassword "1234ABCDefgh"
       auth  = Auth email passw
   register auth
-  Just vCode <- M.getNotificationsForEmail email
+  vCode <- pollNotif email
   verifyEmail vCode
   Right session        <- login auth
   Just uId             <- resolveSessionId session
   Just registeredEmail <- getUser uId
   print (session, uId, registeredEmail)
+  where
+    pollNotif email = do
+      result <- M.getNotificationsForEmail email
+      case result of
+        Nothing -> pollNotif email
+        Just vCode -> return vCode
 
 
 runKatip :: IO ()
