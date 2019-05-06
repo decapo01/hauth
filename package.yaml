@@ -34,6 +34,15 @@ dependencies:
 - postgresql-simple-migration
 - hedis
 - amqp
+- scotty
+- http-types
+- cookie
+- wai
+- wai-extra
+- blaze-builder
+- digestive-functors
+- digestive-functors-aeson
+- time-lens
 
 default-extensions:
   - NoImplicitPrelude
@@ -43,7 +52,6 @@ default-extensions:
   - FlexibleContexts
   - GeneralizedNewtypeDeriving
   - TemplateHaskell
-
 library:
   source-dirs: src
 
