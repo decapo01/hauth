@@ -11,6 +11,7 @@ import qualified Adapter.RabbitMQ.Auth    as MQAuth
 
 import Text.StringRandom
 
+import qualified Adapter.HTTP.Main  as HTTP
 
 
 type State = (PG.State, Redis.State, MQ.State, TVar M.State)
@@ -42,7 +43,7 @@ run logEnv state =
   . unApp
 
   
-withState :: (LogEnv -> State -> IO ()) -> IO ()
+withState :: (Int -> LogEnv -> State -> IO ()) -> IO ()
 withState action =
   withKatip $ \le -> do
     mState <- newTVarIO M.initialState
@@ -50,9 +51,9 @@ withState action =
       Redis.withState redisCfg $ \redisState ->
         MQ.withState mqCfg 16 $ \mqState -> do
           let state = (pgState, redisState, mqState, mState)
-          action le state
+          action port le state
   where
-    mqCfg = "amqp://guest:guest@localhost:15672/%2F"
+    mqCfg = "amqp://guest:guest@localhost:5672/%2F"
     redisCfg = "redis://localhost:6379/0"
     pgCfg = PG.Config
       { PG.configUrl = "postgresql://webappuser:!Q2w3e4r5t@localhost/hauth"
@@ -60,13 +61,14 @@ withState action =
       , PG.configMaxOpenConnPerStripe = 5
       , PG.configIdleConnTimeout = 10
       }
+    port = 3000
 
 main :: IO ()
 main =
-  withState $ \le state@(_,_,mqState,_) -> do
+  withState $ \port le state@(_,_,mqState,_) -> do
     let runner = run le state
     MQAuth.init mqState runner
-    runner action
+    HTTP.main port runner
 
 someFunc :: IO ()
 someFunc = withKatip $ \logEnv -> do

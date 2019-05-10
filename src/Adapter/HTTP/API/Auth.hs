@@ -21,9 +21,36 @@ routes = do
         json ("EmailTaken" :: Text)
       Right _ ->
         return ()
-  post "/api/auth/verifyEmail" undefined
-  post "/api/auth/login" undefined
-  get "/api/users" undefined
+  post "/api/auth/verifyEmail" $ do
+    input <- parseAndValidateJSON verifyEmailForm
+    domainResult <- lift $ verifyEmail input
+    case domainResult of
+      Left EmailVerificationErrorInvalidCode -> do
+        status status400
+        json ("InvalidCode" :: Text)
+      Right _ ->
+        return ()
+  post "/api/auth/login" $ do
+    input <- parseAndValidateJSON authForm
+    domainResult <- lift $ login input
+    case domainResult of
+      Left LoginErrorInvalidAuth -> do
+        status status400
+        json ("InvalidCode" :: Text)
+      Left LoginErrorEmailNotVerified -> do
+        status status400
+        json ("EmailNotVerified" :: Text)
+      Right sId -> do
+        setSessionIdInCookie sId
+        return ()
+  get "/api/users" $ do
+    userId <- reqCurrentUserId
+    mayEmail <- lift $ getUser userId
+    case mayEmail of
+      Nothing ->
+        raise $ stringError "Should not happen"
+      Just email ->
+        json $ rawEmail email
 
 authForm :: (Monad m) => DF.Form [Text] m Auth
 authForm =
@@ -32,3 +59,8 @@ authForm =
   where
     emailForm = DF.validate (toResult . mkEmail) (DF.text Nothing)
     passwordForm = DF.validate (toResult . mkPassword) (DF.text Nothing)
+
+
+verifyEmailForm :: (Monad m) => DF.Form [Text] m VerificationCode
+verifyEmailForm = DF.text Nothing
+
